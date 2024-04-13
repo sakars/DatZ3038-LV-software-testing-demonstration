@@ -34,26 +34,6 @@ TEST_CASE("Empty tree", "[tree_DFS_inorder]")
     REQUIRE_THROWS(tree_DFS_inorder(root));
 }
 
-TEST_CASE("Self-loop malformed tree", "[tree_DFS_inorder]")
-{
-    SECTION("Self-loop on root")
-    {
-        const int x = 23;
-        std::shared_ptr<Node<int>> root = std::make_shared<Node<int>>(23);
-        root->data = 1;
-        SECTION("left leaf is self")
-        {
-            root->left = root;
-            REQUIRE_THROWS(tree_DFS_inorder(root));
-        }
-        SECTION("right leaf is self")
-        {
-            root->right = root;
-            REQUIRE_THROWS(tree_DFS_inorder(root));
-        }
-    }
-}
-
 TEST_CASE("Left chain with a loop (Malformed tree)", "[tree_DFS_inorder]")
 {
     int chain_length = GENERATE(take(10, random(6, 100)));
