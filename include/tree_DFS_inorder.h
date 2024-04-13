@@ -25,10 +25,10 @@ struct Node {
         : data(data)
     {
     }
-    Node(const std::remove_reference_t<T> data)
-        : data(data)
-    {
-    }
+    // Node(const std::remove_reference_t<T> data)
+    //     : data(data)
+    // {
+    // }
 };
 
 /// @brief in-order depth-first iteration of a binary tree
