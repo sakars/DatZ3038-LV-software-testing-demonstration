@@ -88,8 +88,16 @@ TEST_CASE("Left chain", "[tree_DFS_inorder]")
         REQUIRE(result[chain_length - i - 1]->data == i);
     }
 }
-
-TEST_CASE("Tree with the same node twice", "[tree_DFS_inorder]")
+TEST_CASE("Random tree", "[tree_DFS_inorder]")
+{
+    auto node_count = GENERATE(take(200, random(3, 4000)));
+    auto root = generate_random_tree(node_count);
+    auto order = tree_DFS_inorder(root);
+    for (size_t i = 0; i < order.size(); i++) {
+        REQUIRE(order[i]->data == i);
+    }
+}
+TEST_CASE("Random tree with the same node twice (malformed)", "[tree_DFS_inorder]")
 {
     // Create a tree with a node that appears twice
     auto node_count = GENERATE(take(200, random(3, 4000)));
